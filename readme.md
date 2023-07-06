@@ -1,10 +1,8 @@
-# USED
+# USED TECH
 
-## REACT
-
-## TypeScript
-
-## Tailwind CSS
+- REACT
+- TypeScript
+- Tailwind CSS
 
 # INIT
 
