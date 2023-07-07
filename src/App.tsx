@@ -1,5 +1,9 @@
-function App() {
-	return <>Title</>;
-}
+import RegistrationPage from './app/registration/Page';
 
-export default App;
+export default function App() {
+	return (
+		<main className="flex flex-col items-center justify-between">
+			<RegistrationPage />
+		</main>
+	);
+}
