@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import FormControl from '../../../components/Forms/FormControl';
 import TextInput from '../../../components/Forms/TextInput';
 import AppButton from '../../../components/Buttons/AppButton';
@@ -15,8 +16,25 @@ export interface FormData {
 	firstName: string;
 	lastName: string;
 	password: string;
-	rePassword: string;
+	confirmPassword: string;
 }
+export const validationSchema = Yup.object<FormData>({
+	username: Yup.string().required(),
+	firstName: Yup.string().required(),
+	lastName: Yup.string().required(),
+	password: Yup.string()
+		.required()
+		.min(8, 'Password must be atleast 8 characters')
+		.max(50)
+		.label('Password')
+		.matches(
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+			'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+		),
+	confirmPassword: Yup.string()
+		.required()
+		.oneOf([Yup.ref('password')], 'Password does not match'),
+});
 
 const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 	onSubmit,
@@ -29,7 +47,7 @@ const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 				firstName: '',
 				lastName: '',
 				password: '',
-				rePassword: '',
+				confirmPassword: '',
 			}}
 			onSubmit={onSubmit}>
 			{({
