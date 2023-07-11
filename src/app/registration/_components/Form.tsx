@@ -20,6 +20,7 @@ export interface FormData {
 }
 export const validationSchema = Yup.object<FormData>({
 	username: Yup.string().required(),
+	email: Yup.string().email(),
 	firstName: Yup.string().required(),
 	lastName: Yup.string().required(),
 	password: Yup.string()
