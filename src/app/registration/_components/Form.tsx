@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import FormControl from '../../../components/Forms/FormControl';
-import TextInput from '../../../components/Forms/TextInput';
+import TextInput from '../../../components/Forms/Input';
 import AppButton from '../../../components/Buttons/AppButton';
 import Stack from '../../../components/Layout/Stack';
 
@@ -12,15 +12,19 @@ export type RegistrationFormProps = {
 
 export interface FormData {
 	username: string;
-	phone: number;
+	phone: number | undefined;
 	firstName: string;
 	lastName: string;
 	password: string;
 	confirmPassword: string;
 }
+
+const phoneRegExp = /^(09|\+639)\d{9}$/;
+
 export const validationSchema = Yup.object<FormData>({
 	username: Yup.string().required(),
 	email: Yup.string().email(),
+	phone: Yup.string().matches(phoneRegExp, 'Invalid Phone').required(),
 	firstName: Yup.string().required(),
 	lastName: Yup.string().required(),
 	password: Yup.string()
@@ -42,9 +46,11 @@ const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 }) => {
 	return (
 		<Formik
+			validationSchema={validationSchema}
 			initialValues={{
 				username: '',
-				phone: 0,
+				email: '',
+				phone: undefined,
 				firstName: '',
 				lastName: '',
 				password: '',
@@ -75,6 +81,29 @@ const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 									name="username"
 									label="USERNAME"
 									value={values.username}
+									onChange={handleChange}
+									onBlur={handleBlur}
+								/>
+							</FormControl>
+							<FormControl error={touched.email ? errors.email : ''}>
+								<TextInput
+									type="text"
+									id="email"
+									name="email"
+									label="EMAIL"
+									value={values.email}
+									onChange={handleChange}
+									onBlur={handleBlur}
+								/>
+							</FormControl>
+
+							<FormControl error={touched.phone ? errors.phone : ''}>
+								<TextInput
+									type="tel"
+									id="phone"
+									name="phone"
+									label="MOBILE"
+									value={values.phone}
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>

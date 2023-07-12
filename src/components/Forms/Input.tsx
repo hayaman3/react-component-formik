@@ -8,15 +8,15 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-export type PasswordInputProps = {
+export type TextInputProps = {
 	error?: boolean | string;
 	block?: boolean;
 	label: string;
-	value: string;
+	value: string | number | undefined;
 	onChangeText?: (text: string) => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const PasswordInput: FunctionComponent<PasswordInputProps> = ({
+const TextInput: FunctionComponent<TextInputProps> = ({
 	label,
 	value,
 	onChangeText = () => {
@@ -102,4 +102,4 @@ const PasswordInput: FunctionComponent<PasswordInputProps> = ({
 	);
 };
 
-export default PasswordInput;
+export default TextInput;
