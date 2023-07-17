@@ -15,7 +15,7 @@ const LoginPage: FunctionComponent<RegistrationPageProps> = props => {
 	return (
 		<div className="mx-auto w-96">
 			<Stack className="space-y-4">
-				<h1>Registration</h1>
+				<h1>Login</h1>
 				<LoginForm onSubmit={handleSubmit} />
 			</Stack>
 		</div>
