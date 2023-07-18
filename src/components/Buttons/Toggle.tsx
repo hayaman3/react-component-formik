@@ -1,49 +1,31 @@
-import React from 'react';
+// import { useState, ChangeEvent } from "react";
+import classNames from 'classnames';
+import { FunctionComponent } from 'react';
 
-interface SwitchProperties {
-	id: string;
-	label: string;
-	onChange: (isChecked: boolean) => void;
-	'data-on'?: string;
-	isChecked: boolean;
-	'data-off'?: string;
-	description?: string;
+interface ToggleProps {
+	clickHandler: (
+		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => void;
 }
 
-const Switch: React.FC<SwitchProperties> = props => {
-	const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		props.onChange && props.onChange(event.target.checked);
-	};
-
-	const labelId = `label-${props.id}`;
-	const descriptionId = `description-${props.id}`;
-
-	const labelBy = labelId + ' ' + descriptionId;
-
+const ToggleSwitch: FunctionComponent<ToggleProps> = ({ clickHandler }) => {
 	return (
-		<label htmlFor={props.id} className="switch">
-			<input
-				id={props.id}
-				type="checkbox"
-				role="switch"
-				data-on={props['data-on']}
-				checked={props.isChecked}
-				data-off={props['data-off']}
-				onChange={onChange}
-				aria-checked={props.isChecked}
-				aria-labelledby={labelBy}
-			/>
-			<div className="switch-labels">
-				<span id={labelId}>{props.label}</span>
-				{props.description && <p id={descriptionId}>{props.description}</p>}
-			</div>
-		</label>
+		<button
+			onClick={clickHandler}
+			className={classNames(
+				'px-5 py-4',
+				'rounded-xl',
+				'transition',
+				'focus:scale-[0.99]',
+				'bg-gray-800',
+				'hover:bg-gray-900',
+				'focus:bg-gray-700',
+				'font-bold',
+				'text-gray-100'
+			)}>
+			Toggle
+		</button>
 	);
 };
 
-Switch.defaultProps = {
-	'data-on': 'ON',
-	'data-off': 'OFF',
-};
-
-export default Switch;
+export default ToggleSwitch;
