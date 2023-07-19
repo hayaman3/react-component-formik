@@ -12,11 +12,7 @@ export type RegistrationFormProps = {
 
 export interface FormData {
 	username: string;
-	phone: number | undefined;
-	firstName: string;
-	lastName: string;
 	password: string;
-	confirmPassword: string;
 }
 
 const LoginForm: FunctionComponent<RegistrationFormProps> = ({ onSubmit }) => {
@@ -25,12 +21,7 @@ const LoginForm: FunctionComponent<RegistrationFormProps> = ({ onSubmit }) => {
 			validationSchema={validationSchema}
 			initialValues={{
 				username: '',
-				email: '',
-				phone: undefined,
-				firstName: '',
-				lastName: '',
 				password: '',
-				confirmPassword: '',
 			}}
 			onSubmit={onSubmit}>
 			{({
@@ -61,48 +52,13 @@ const LoginForm: FunctionComponent<RegistrationFormProps> = ({ onSubmit }) => {
 									onBlur={handleBlur}
 								/>
 							</FormControl>
-							<FormControl error={touched.email ? errors.email : ''}>
+							<FormControl error={touched.password ? errors.password : ''}>
 								<TextInput
-									type="text"
-									id="email"
-									name="email"
-									label="EMAIL"
-									value={values.email}
-									onChange={handleChange}
-									onBlur={handleBlur}
-								/>
-							</FormControl>
-
-							<FormControl error={touched.phone ? errors.phone : ''}>
-								<TextInput
-									type="tel"
-									id="phone"
-									name="phone"
-									label="MOBILE"
-									value={values.phone}
-									onChange={handleChange}
-									onBlur={handleBlur}
-								/>
-							</FormControl>
-							<FormControl error={touched.firstName ? errors.firstName : ''}>
-								<TextInput
-									type="text"
-									id="firstName"
-									name="firstName"
-									label="FIRST NAME"
-									value={values.firstName}
-									onChange={handleChange}
-									onBlur={handleBlur}
-								/>
-							</FormControl>
-
-							<FormControl error={touched.lastName ? errors.lastName : ''}>
-								<TextInput
-									type="text"
-									id="lastName"
-									name="lastName"
-									label="LAST NAME"
-									value={values.lastName}
+									type="password"
+									id="password"
+									name="password"
+									label="PASSWORD"
+									value={values.password}
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>

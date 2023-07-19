@@ -12,7 +12,7 @@ export type RegistrationFormProps = {
 
 export interface FormData {
 	username: string;
-	phone: number | undefined;
+	phone: string;
 	firstName: string;
 	lastName: string;
 	password: string;
@@ -50,7 +50,7 @@ const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 			initialValues={{
 				username: '',
 				email: '',
-				phone: undefined,
+				phone: '',
 				firstName: '',
 				lastName: '',
 				password: '',
@@ -127,6 +127,31 @@ const RegistrationForm: FunctionComponent<RegistrationFormProps> = ({
 									name="lastName"
 									label="LAST NAME"
 									value={values.lastName}
+									onChange={handleChange}
+									onBlur={handleBlur}
+								/>
+							</FormControl>
+
+							<FormControl error={touched.password ? errors.password : ''}>
+								<TextInput
+									type="password"
+									id="password"
+									name="password"
+									label="PASSWORD"
+									value={values.password}
+									onChange={handleChange}
+									onBlur={handleBlur}
+								/>
+							</FormControl>
+
+							<FormControl
+								error={touched.confirmPassword ? errors.confirmPassword : ''}>
+								<TextInput
+									type="password"
+									id="confirmPassword"
+									name="confirmPassword"
+									label="CONFIRM PASSWORD"
+									value={values.confirmPassword}
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>

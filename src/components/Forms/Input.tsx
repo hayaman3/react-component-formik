@@ -12,7 +12,7 @@ export type TextInputProps = {
 	error?: boolean | string;
 	block?: boolean;
 	label: string;
-	value: string | number | undefined;
+	value: string;
 	onChangeText?: (text: string) => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 

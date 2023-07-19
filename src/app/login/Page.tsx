@@ -7,7 +7,7 @@ export type RegistrationPageProps = {
 	// No Props
 };
 
-const LoginPage: FunctionComponent<RegistrationPageProps> = props => {
+const LoginPage: FunctionComponent<RegistrationPageProps> = () => {
 	const handleSubmit = (formData: any) => {
 		console.log(formData);
 	};
